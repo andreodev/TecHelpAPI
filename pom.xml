@@ -1,20 +1,36 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+<<<<<<< HEAD
+=======
+
+>>>>>>> alexandre-features
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.4.0</version>
 		<relativePath/>
 	</parent>
+<<<<<<< HEAD
+=======
+
+>>>>>>> alexandre-features
 	<groupId>br.com.TecHelpAPI</groupId>
 	<artifactId>TecHelpAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>TecHelpAPI</name>
 	<description>Demo project for Spring Boot</description>
+<<<<<<< HEAD
+=======
+
+>>>>>>> alexandre-features
 	<properties>
 		<java.version>21</java.version>
 		<dozer.version>7.0.0</dozer.version>
 	</properties>
+<<<<<<< HEAD
+=======
+
+>>>>>>> alexandre-features
 	<repositories>
 		<repository>
 			<id>central</id>
@@ -28,6 +44,19 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+<<<<<<< HEAD
+=======
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-core</artifactId>
+			<version>11.0.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+>>>>>>> alexandre-features
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -38,11 +67,19 @@
 			<groupId>org.springframework.hateoas</groupId>
 			<artifactId>spring-hateoas</artifactId>
 		</dependency>
+<<<<<<< HEAD
+=======
+
+>>>>>>> alexandre-features
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>1.7.0</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+
+>>>>>>> alexandre-features
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
@@ -55,6 +92,7 @@
 			<version>${dozer.version}</version>
 		</dependency>
 
+<<<<<<< HEAD
 <!--		<dependency>-->
 <!--			<groupId>org.mockito</groupId>-->
 <!--			<artifactId>mockito-core</artifactId>-->
@@ -68,6 +106,8 @@
 <!--			<version>1.14.4</version> &lt;!&ndash; Ou versão mais recente &ndash;&gt;-->
 <!--		</dependency>-->
 
+=======
+>>>>>>> alexandre-features
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -80,6 +120,10 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+<<<<<<< HEAD
+=======
+
+>>>>>>> alexandre-features
 	</dependencies>
 	<build>
 		<plugins>
@@ -95,6 +139,7 @@
 					<target>9</target>
 				</configuration>
 			</plugin>
+<<<<<<< HEAD
 
 			<!--			<plugin>-->
 <!--				<groupId>org.apache.maven.plugins</groupId>-->
@@ -108,6 +153,8 @@
 <!--					</argLine>-->
 <!--				</configuration>-->
 <!--			</plugin>-->
+=======
+>>>>>>> alexandre-features
 		</plugins>
 	</build>
 </project>

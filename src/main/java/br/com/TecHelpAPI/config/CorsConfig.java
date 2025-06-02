@@ -1,6 +1,9 @@
 package br.com.TecHelpAPI.config;
 
+<<<<<<< HEAD
 import org.springframework.context.annotation.Bean;
+=======
+>>>>>>> alexandre-features
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

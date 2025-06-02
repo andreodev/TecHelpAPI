@@ -1,9 +1,18 @@
 spring:
+<<<<<<< HEAD
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://localhost:1433;databaseName=TecHelp;encrypt=true;trustServerCertificate=true
     username: sa
     password: 30112004As
+=======
+
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;databaseName=TecHelp;encrypt=true;trustServerCertificate=true
+    username: api_user
+    password: Xande8160
+>>>>>>> alexandre-features
   jpa:
     hibernate:
       naming:
@@ -13,6 +22,10 @@ spring:
     time-zone: America/Sao_Paulo
     date-format: dd/MM/yyyy
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> alexandre-features
 server:
   port: 8080
   servlet:
@@ -22,3 +35,8 @@ logging:
   level:
     br.com.TecHelpAPI: INFO
     root: WARN
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> alexandre-features
