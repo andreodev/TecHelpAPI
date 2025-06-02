@@ -1,6 +1,7 @@
 package br.com.TecHelpAPI.services;
 
 import br.com.TecHelpAPI.data.dto.UserDTO;
+import br.com.TecHelpAPI.exception.EmailAlreadyExistsException;
 import br.com.TecHelpAPI.exception.ResourceNotFoundException;
 import static br.com.TecHelpAPI.mapper.ObjectMapper.parseListObjects;
 import static br.com.TecHelpAPI.mapper.ObjectMapper.parseObject;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServices {
@@ -33,11 +35,16 @@ public class UserServices {
         return parseObject(entity, UserDTO.class);
     }
 
-    public UserDTO create(UserDTO user) {
-        logger.info("Create one user!");
-        var entity = parseObject(user, User.class);
-        return parseObject(repository.save(entity), UserDTO.class);
+   public UserDTO create(UserDTO user) {
+    logger.info("Create one user!");
+
+    if (repository.findByEmail(user.getEmail()).isPresent()) {
+        throw new EmailAlreadyExistsException("Já existe um usuário com o e-mail: " + user.getEmail());
     }
+
+    var entity = parseObject(user, User.class);
+    return parseObject(repository.save(entity), UserDTO.class);
+}
 
     public UserDTO update(UserDTO user) {
         logger.info("Updating one user!");
