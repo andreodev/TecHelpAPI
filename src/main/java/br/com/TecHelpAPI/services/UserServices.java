@@ -1,5 +1,6 @@
 package br.com.TecHelpAPI.services;
 
+import br.com.TecHelpAPI.config.JwtUtil;
 import br.com.TecHelpAPI.data.dto.UserDTO;
 import br.com.TecHelpAPI.exception.EmailAlreadyExistsException;
 import br.com.TecHelpAPI.exception.ResourceNotFoundException;
@@ -7,9 +8,14 @@ import static br.com.TecHelpAPI.mapper.ObjectMapper.parseListObjects;
 import static br.com.TecHelpAPI.mapper.ObjectMapper.parseObject;
 import br.com.TecHelpAPI.model.User;
 import br.com.TecHelpAPI.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,16 +41,21 @@ public class UserServices {
         return parseObject(entity, UserDTO.class);
     }
 
-   public UserDTO create(UserDTO user) {
-    logger.info("Create one user!");
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    if (repository.findByEmail(user.getEmail()).isPresent()) {
-        throw new EmailAlreadyExistsException("Já existe um usuário com o e-mail: " + user.getEmail());
+    public UserDTO create(UserDTO user) {
+        if (repository.findByEmail(user.getEmail()).isPresent()) {
+            throw new EmailAlreadyExistsException("Já existe um usuário com o e-mail: " + user.getEmail());
+        }
+
+        User entity = parseObject(user, User.class);
+
+        // Criptografa a senha antes de salvar
+        entity.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        return parseObject(repository.save(entity), UserDTO.class);
     }
-
-    var entity = parseObject(user, User.class);
-    return parseObject(repository.save(entity), UserDTO.class);
-}
 
     public UserDTO update(UserDTO user) {
         logger.info("Updating one user!");
@@ -52,7 +63,7 @@ public class UserServices {
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
 
         entity.setNameUser(user.getNameUser());
-        entity.setPassword(user.getPassword());
+        entity.setPassword(passwordEncoder.encode(user.getPassword()));
         entity.setDept(user.getDept());
         entity.setEmail(user.getEmail());
 
@@ -66,24 +77,34 @@ public class UserServices {
         repository.delete(entity);
     }
 
-    public boolean authenticate(String nameUser, String password) {
-        logger.info("Authenticating user with username: {}", nameUser);
+    public String authenticateAndGetToken(String nameUser, String password) {
+    var optionalUser = repository.findByNameUser(nameUser);
 
-        var optionalUser = repository.findByNameUser(nameUser);
+    if (optionalUser.isEmpty()) {
+        return null; // usuário não existe
+    }
 
-        if (optionalUser.isEmpty()) {
-            logger.warn("User not found for username: {}", nameUser);
-            return false;
-        }
+    User user = optionalUser.get();
 
+   if (passwordEncoder.matches(password, user.getPassword())) {
+    return JwtUtil.generateToken(user); // passa o user inteiro
+}
+
+    return null; // senha inválida
+}
+
+public User authenticateAndGetUser(String nameUser, String rawPassword) {
+    Optional<User> optionalUser = repository.findByNameUser(nameUser);
+
+    if (optionalUser.isPresent()) {
         User user = optionalUser.get();
 
-        if (user.getPassword().equals(password)) {
-            logger.info("User authenticated successfully");
-            return true;
-        } else {
-            logger.warn("Invalid password for username: {}", nameUser);
-            return false;
+        if (passwordEncoder.matches(rawPassword, user.getPassword())) {
+            return user;
         }
     }
+
+    return null; // credenciais inválidas
+}
+
 }
