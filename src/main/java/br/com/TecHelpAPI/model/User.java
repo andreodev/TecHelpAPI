@@ -21,30 +21,17 @@ public class User implements Serializable {
     @Column(nullable = false, length = 40)
     private String nameUser;
 
-<<<<<<< HEAD
     @Column(nullable = false, length = 12)
-=======
-    @Column(nullable = false)
->>>>>>> alexandre-features
     private String password;
 
     @Column(nullable = false, length = 20)
     private String dept;
 
-<<<<<<< HEAD
     @Column(nullable = false, length = 50)
-=======
-    @Column(nullable = false, length = 50, unique = true)
->>>>>>> alexandre-features
     private String email;
 
     public User(){ }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> alexandre-features
     public Long getIdUser() {
         return idUser;
     }
@@ -87,24 +74,12 @@ public class User implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-<<<<<<< HEAD
         if (!(o instanceof User user)) return false;
         return Objects.equals(getIdUser(), user.getIdUser()) && Objects.equals(getNameUser(), user.getNameUser()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getDept(), user.getDept()) && Objects.equals(getEmail(), user.getEmail());
-=======
-        if (this == o) return true;
-        if (!(o instanceof User user)) return false;
-        return Objects.equals(getIdUser(), user.getIdUser());
->>>>>>> alexandre-features
     }
 
     @Override
     public int hashCode() {
-<<<<<<< HEAD
         return Objects.hash(getIdUser(), getNameUser(), getPassword(), getDept(), getEmail());
     }
 }
-=======
-        return Objects.hash(getIdUser());
-    }
-}
->>>>>>> alexandre-features

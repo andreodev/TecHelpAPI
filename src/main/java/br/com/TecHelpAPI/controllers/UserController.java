@@ -53,11 +53,7 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
-<<<<<<< HEAD
     // Atualizado: endpoint para login usando nameUser
-=======
-
->>>>>>> alexandre-features
     @PostMapping(
             value = "/login",
             consumes = MediaType.APPLICATION_JSON_VALUE,
