@@ -17,5 +17,9 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
                                         @Param("dateTicket") LocalDate dateTicket,
                                         @Param("status") String status);
 
+<<<<<<< HEAD
 
+=======
+//    Date date(java.sql.Date date);
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
 }

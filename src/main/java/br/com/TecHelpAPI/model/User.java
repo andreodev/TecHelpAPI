@@ -21,19 +21,30 @@ public class User implements Serializable {
     @Column(nullable = false, length = 40)
     private String nameUser;
 
+<<<<<<< HEAD
     @Column(nullable = false)
+=======
+    @Column(nullable = false, length = 12)
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
     private String password;
 
     @Column(nullable = false, length = 20)
     private String dept;
 
+<<<<<<< HEAD
     @Column(nullable = false, length = 50, unique = true)
+=======
+    @Column(nullable = false, length = 50)
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
     private String email;
 
     public User(){ }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
     public Long getIdUser() {
         return idUser;
     }
@@ -76,13 +87,24 @@ public class User implements Serializable {
 
     @Override
     public boolean equals(Object o) {
+<<<<<<< HEAD
         if (this == o) return true;
         if (!(o instanceof User user)) return false;
         return Objects.equals(getIdUser(), user.getIdUser());
+=======
+        if (!(o instanceof User user)) return false;
+        return Objects.equals(getIdUser(), user.getIdUser()) && Objects.equals(getNameUser(), user.getNameUser()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getDept(), user.getDept()) && Objects.equals(getEmail(), user.getEmail());
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
     }
 
     @Override
     public int hashCode() {
+<<<<<<< HEAD
         return Objects.hash(getIdUser());
     }
 }
+=======
+        return Objects.hash(getIdUser(), getNameUser(), getPassword(), getDept(), getEmail());
+    }
+}
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab

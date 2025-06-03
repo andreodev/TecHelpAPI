@@ -1,5 +1,6 @@
 package br.com.TecHelpAPI.services;
 
+<<<<<<< HEAD
 
 import br.com.TecHelpAPI.data.dto.CreateTicketDTO;
 import br.com.TecHelpAPI.data.dto.TicketDTO;
@@ -14,20 +15,35 @@ import br.com.TecHelpAPI.repository.TicketRepository;
 import br.com.TecHelpAPI.repository.UserRepository;
 import static br.com.TecHelpAPI.mapper.ObjectMapper.parseListObjects;
 import static br.com.TecHelpAPI.mapper.ObjectMapper.parseObject;
+=======
+import br.com.TecHelpAPI.data.dto.TicketDTO;
+import br.com.TecHelpAPI.exception.TicketServiceException;
+import br.com.TecHelpAPI.model.Ticket;
+import br.com.TecHelpAPI.repository.TicketRepository;
+import static br.com.TecHelpAPI.mapper.ObjectMapper.parseListObjects;
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+<<<<<<< HEAD
 import java.time.LocalDate;
 import java.util.List;
 
 
+=======
+
+import java.time.LocalDate;
+import java.util.List;
+
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
 @Service
 public class TicketServices {
 
     private static final Logger logger = LoggerFactory.getLogger(TicketServices.class);
 
+<<<<<<< HEAD
     private final TicketRepository ticketRepository;
     private final UserRepository userRepository;
     private final CategoryRepository categoryRepository;
@@ -42,6 +58,13 @@ public class TicketServices {
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
         this.skillRepository = skillRepository;
+=======
+    private final TicketRepository repository;
+
+    @Autowired
+    public TicketServices(TicketRepository repository) {
+        this.repository = repository;
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
     }
 
     @Transactional(readOnly = true)
@@ -51,10 +74,17 @@ public class TicketServices {
 
             if (idTicket == null && dateTicket == null && (status == null || status.isEmpty())) {
                 logger.warn("Parâmetros insuficientes para consulta: todos os filtros são nulos ou vazios");
+<<<<<<< HEAD
             }
 
             List<Ticket> tickets = ticketRepository.executeTicketSelectSP(idTicket, dateTicket, status);
 
+=======
+                return List.of();
+            }
+
+            List<Ticket> tickets = repository.executeTicketSelectSP(idTicket, dateTicket, status);
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
 
             if (tickets.isEmpty()) {
                 logger.warn("Nenhum ticket encontrado para os parâmetros fornecidos - idTicket: {}, dateTicket: {}, status: {}", idTicket, dateTicket, status);
@@ -69,6 +99,7 @@ public class TicketServices {
             throw new TicketServiceException("Falha na consulta de tickets", e);
         }
     }
+<<<<<<< HEAD
 
     @Transactional
     public TicketDTO createTicket(CreateTicketDTO dto) {
@@ -114,4 +145,6 @@ public class TicketServices {
     public SkillRepository getSkillRepository() {
         return skillRepository;
     }
+=======
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
 }

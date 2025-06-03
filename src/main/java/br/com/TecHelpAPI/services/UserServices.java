@@ -1,5 +1,9 @@
 package br.com.TecHelpAPI.services;
 
+<<<<<<< HEAD
+=======
+import br.com.TecHelpAPI.config.JwtUtil;
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
 import br.com.TecHelpAPI.data.dto.UserDTO;
 import br.com.TecHelpAPI.exception.EmailAlreadyExistsException;
 import br.com.TecHelpAPI.exception.ResourceNotFoundException;
@@ -7,9 +11,19 @@ import static br.com.TecHelpAPI.mapper.ObjectMapper.parseListObjects;
 import static br.com.TecHelpAPI.mapper.ObjectMapper.parseObject;
 import br.com.TecHelpAPI.model.User;
 import br.com.TecHelpAPI.repository.UserRepository;
+<<<<<<< HEAD
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+=======
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,9 +38,12 @@ public class UserServices {
     @Autowired
     UserRepository repository;
 
+<<<<<<< HEAD
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+=======
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
     public List<UserDTO> findAll() {
         logger.info("Finding all users!");
         return parseListObjects(repository.findAll(), UserDTO.class);
@@ -39,6 +56,7 @@ public class UserServices {
         return parseObject(entity, UserDTO.class);
     }
 
+<<<<<<< HEAD
     public UserDTO create(UserDTO userDto) {
         logger.info("Attempting to create one user with email: {}", userDto.getEmail());
 
@@ -89,11 +107,45 @@ public class UserServices {
 
     public void delete(Long id) {
         logger.info("Delete one user with ID: {}", id);
+=======
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public UserDTO create(UserDTO user) {
+        if (repository.findByEmail(user.getEmail()).isPresent()) {
+            throw new EmailAlreadyExistsException("Já existe um usuário com o e-mail: " + user.getEmail());
+        }
+
+        User entity = parseObject(user, User.class);
+
+        // Criptografa a senha antes de salvar
+        entity.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        return parseObject(repository.save(entity), UserDTO.class);
+    }
+
+    public UserDTO update(UserDTO user) {
+        logger.info("Updating one user!");
+        User entity = repository.findById(user.getIdUser())
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
+
+        entity.setNameUser(user.getNameUser());
+        entity.setPassword(passwordEncoder.encode(user.getPassword()));
+        entity.setDept(user.getDept());
+        entity.setEmail(user.getEmail());
+
+        return parseObject(repository.save(entity), UserDTO.class);
+    }
+
+    public void delete(Long id) {
+        logger.info("Delete one user!");
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
         User entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this id"));
         repository.delete(entity);
     }
 
+<<<<<<< HEAD
     public boolean authenticate(String nameUser, String password) {
         logger.info("Authenticating user with username: {}", nameUser);
 
@@ -116,3 +168,36 @@ public class UserServices {
         }
     }
 }
+=======
+    public String authenticateAndGetToken(String nameUser, String password) {
+    var optionalUser = repository.findByNameUser(nameUser);
+
+    if (optionalUser.isEmpty()) {
+        return null; // usuário não existe
+    }
+
+    User user = optionalUser.get();
+
+   if (passwordEncoder.matches(password, user.getPassword())) {
+    return JwtUtil.generateToken(user); // passa o user inteiro
+}
+
+    return null; // senha inválida
+}
+
+public User authenticateAndGetUser(String nameUser, String rawPassword) {
+    Optional<User> optionalUser = repository.findByNameUser(nameUser);
+
+    if (optionalUser.isPresent()) {
+        User user = optionalUser.get();
+
+        if (passwordEncoder.matches(rawPassword, user.getPassword())) {
+            return user;
+        }
+    }
+
+    return null; // credenciais inválidas
+}
+
+}
+>>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
