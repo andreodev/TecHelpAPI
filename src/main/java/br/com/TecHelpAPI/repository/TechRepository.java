@@ -12,6 +12,7 @@ import java.util.List;
 public interface TechRepository extends JpaRepository<Tech, Long> {
 
     @Procedure(name = "Tech.spTechSelect")
-    List<Tech> executeTechSelectSP(@Param("idTech") Integer idTech);
+    List<Tech> executeTechSelectSP(@Param("idTech") Long idTech);
+
 
 }

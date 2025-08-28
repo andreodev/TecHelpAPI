@@ -25,7 +25,7 @@ public class TechServices {
     }
 
     @Transactional(readOnly = true)
-    public List<TechDTO> getTechDataById(Integer idTech) {
+    public List<TechDTO> getTechDataById(Long idTech) {
 
         logger.info("Iniciando busca de Técnico no banco de dados - idTech: {}", idTech);
 

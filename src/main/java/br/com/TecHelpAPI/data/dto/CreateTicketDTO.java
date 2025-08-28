@@ -1,19 +1,17 @@
 package br.com.TecHelpAPI.data.dto;
 
-import java.util.List;
-// Importe anotações de validação se for usar (ex: jakarta.validation.constraints.*)
+import java.time.LocalDate;
 
 public class CreateTicketDTO {
 
-    private String nameTicket; // Equivalente ao 'title'
+    private String nameTicket;
     private String description;
-    private Integer requesterId; // Mantendo Integer como no seu TicketDTO para idUser
-    private Integer categoryId;  // Mantendo Integer como no seu TicketDTO para idCategory
-    private String coldTicket;   // O que é este campo? Ele é enviado na criação?
-    private List<Long> skillIds; // Você precisa associar skills na criação do ticket?
+    private Integer requesterId;
+    private Integer categoryId;
+    private LocalDate dateTicket; // Pode ser null, service define hoje se não enviado
+    private String status;        // Pode ser null, service define "Aberto" se não enviado
 
-    // Construtores, Getters e Setters
-
+    // Getters e Setters
     public String getNameTicket() {
         return nameTicket;
     }
@@ -46,19 +44,19 @@ public class CreateTicketDTO {
         this.categoryId = categoryId;
     }
 
-    public String getColdTicket() {
-        return coldTicket;
+    public LocalDate getDateTicket() {
+        return dateTicket;
     }
 
-    public void setColdTicket(String coldTicket) {
-        this.coldTicket = coldTicket;
+    public void setDateTicket(LocalDate dateTicket) {
+        this.dateTicket = dateTicket;
     }
 
-    public List<Long> getSkillIds() {
-        return skillIds;
+    public String getStatus() {
+        return status;
     }
 
-    public void setSkillIds(List<Long> skillIds) {
-        this.skillIds = skillIds;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

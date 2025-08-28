@@ -13,7 +13,7 @@ public class TechDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private Integer idTech;
+    private Long idTech;
     private String nameTech;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
@@ -25,11 +25,11 @@ public class TechDTO implements Serializable {
 
     public TechDTO(){ }
 
-    public Integer getIdTech() {
+    public Long getIdTech() {
         return idTech;
     }
 
-    public void setIdTech(Integer idTech) {
+    public void setIdTech(Long idTech) {
         this.idTech = idTech;
     }
 

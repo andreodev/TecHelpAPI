@@ -3,13 +3,9 @@ spring:
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
     url: jdbc:sqlserver://localhost:1433;databaseName=TecHelp;encrypt=true;trustServerCertificate=true
-<<<<<<< HEAD
-    username: api_user
-    password: Xande8160
-=======
-    username: sa
-    password: 30112004As
->>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
+    username: leonardo
+    password: 01042018
+
   jpa:
     hibernate:
       naming:
@@ -28,6 +24,6 @@ server:
 logging:
   level:
     br.com.TecHelpAPI: INFO
-    root: WARN
+    root: INFO
 
 

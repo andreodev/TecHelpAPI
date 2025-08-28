@@ -23,8 +23,8 @@ public class Category implements Serializable {
 
     public Category(){ }
 
-    public Long getIdCategory() {
-        return idCategory;
+    public Integer getIdCategory() {
+        return Math.toIntExact(idCategory);
     }
 
     public void setIdCategory(Long idCategory) {

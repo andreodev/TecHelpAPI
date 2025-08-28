@@ -32,29 +32,26 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-<<<<<<< HEAD
-=======
 		<!--JWT DEPENDENCY-->
 
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-api</artifactId>
-    <version>0.11.5</version>
-</dependency>
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-impl</artifactId>
-    <version>0.11.5</version>
-    <scope>runtime</scope>
-</dependency>
-<dependency>
-    <groupId>io.jsonwebtoken</groupId>
-    <artifactId>jjwt-jackson</artifactId> <!-- ou jjwt-gson se preferir -->
-    <version>0.11.5</version>
-    <scope>runtime</scope>
-</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId> <!-- ou jjwt-gson se preferir -->
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
 
->>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-core</artifactId>
@@ -94,9 +91,14 @@
 			<version>${dozer.version}</version>
 		</dependency>
 
-<<<<<<< HEAD
-=======
-<!--		<dependency>-->
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+
+
+		<!--		<dependency>-->
 <!--			<groupId>org.mockito</groupId>-->
 <!--			<artifactId>mockito-core</artifactId>-->
 <!--			<version>5.6.0</version>-->
@@ -109,7 +111,7 @@
 <!--			<version>1.14.4</version> &lt;!&ndash; Ou versão mais recente &ndash;&gt;-->
 <!--		</dependency>-->
 
->>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -138,8 +140,6 @@
 					<target>9</target>
 				</configuration>
 			</plugin>
-<<<<<<< HEAD
-=======
 
 			<!--			<plugin>-->
 <!--				<groupId>org.apache.maven.plugins</groupId>-->
@@ -153,7 +153,7 @@
 <!--					</argLine>-->
 <!--				</configuration>-->
 <!--			</plugin>-->
->>>>>>> 89ac0d2685a46c2149fe250889388cfc52e677ab
+
 		</plugins>
 	</build>
 </project>

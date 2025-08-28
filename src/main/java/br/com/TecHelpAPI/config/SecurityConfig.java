@@ -27,6 +27,7 @@ public class SecurityConfig {
                         .requestMatchers("/ticket/**").permitAll()
                         .requestMatchers("/category/**").permitAll()
                         .requestMatchers("/skill/**").permitAll()
+                        .requestMatchers("/tech/**").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();

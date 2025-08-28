@@ -14,7 +14,7 @@ public class MockTech {
     }
 
     public TechDTO mockDTO() {
-        return mockDTO(0);
+        return mockDTO(0L);
     }
 
     public List<Tech> mockEntityList() {
@@ -28,7 +28,7 @@ public class MockTech {
     public List<TechDTO> mockDTOList() {
         List<TechDTO> Techs = new ArrayList<>();
         for (int i = 0; i < 14; i++) {
-            Techs.add(mockDTO(i));
+            Techs.add(mockDTO((long) i));
         }
         return Techs;
     }
@@ -43,7 +43,7 @@ public class MockTech {
         return tech;
     }
 
-    public TechDTO mockDTO(Integer number) {
+    public TechDTO mockDTO(Long number) {
         TechDTO tech = new TechDTO();
         tech.setIdTech(number);
         tech.setNameTech("Tech Name Test" + number);
